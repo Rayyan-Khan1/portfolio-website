@@ -1,0 +1,88 @@
+.contact {
+  background: var(--bg);
+  padding-bottom: 0;
+}
+
+.contact__tagline {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-2xl);
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+.contact__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 480px;
+}
+
+.contact__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.contact__link:hover {
+  border-color: var(--accent-muted);
+  transform: translateX(4px);
+}
+
+.contact__link-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  min-width: 64px;
+  flex-shrink: 0;
+}
+
+.contact__link-value {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: color var(--transition);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.contact__link:hover .contact__link-value {
+  color: var(--text);
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────────── */
+.footer {
+  margin-top: var(--space-3xl);
+  padding-block: var(--space-xl);
+  border-top: 1px solid var(--border);
+}
+
+.footer__text {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 480px) {
+  .contact__links {
+    max-width: 100%;
+  }
+
+  .contact__link {
+    gap: var(--space-md);
+  }
+
+  .contact__link-label {
+    min-width: 54px;
+  }
+}
