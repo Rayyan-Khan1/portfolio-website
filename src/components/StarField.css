@@ -1,0 +1,25 @@
+.starfield {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.starfield__star {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(201, 168, 76, 0.9);
+  animation:
+    twinkle var(--twinkle-dur, 3s) var(--twinkle-delay, 0s) linear infinite,
+    drift    var(--drift-dur,   14s) var(--drift-delay,  0s) linear infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.05; transform: scale(0.8); }
+  50%       { opacity: 1;    transform: scale(1.2); }
+}
+
+@keyframes drift {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-80px); }
+}

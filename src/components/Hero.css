@@ -6,17 +6,6 @@
   overflow: hidden;
 }
 
-/* ─── Dot grid background ────────────────────────────────────────────────── */
-.hero__bg-grid {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(201, 168, 76, 0.25) 1.5px, transparent 1.5px);
-  background-size: 28px 28px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
-  pointer-events: none;
-}
-
 /* ─── Content ────────────────────────────────────────────────────────────── */
 .hero__content {
   padding-top: calc(var(--nav-height) + var(--space-3xl));
@@ -67,16 +56,6 @@
 
 .hero__name-word:not(:first-child) {
   color: var(--accent);
-}
-
-/* ─── Tagline ────────────────────────────────────────────────────────────── */
-.hero__tagline {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  font-weight: 400;
-  color: var(--text-muted);
-  max-width: 480px;
-  line-height: 1.5;
-  margin-bottom: var(--space-2xl);
 }
 
 /* ─── CTAs ───────────────────────────────────────────────────────────────── */

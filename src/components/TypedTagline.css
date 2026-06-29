@@ -1,0 +1,36 @@
+.typed-tagline {
+  position: relative;
+  display: inline-block;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 400;
+  color: var(--text-muted);
+  max-width: 480px;
+  line-height: 1.5;
+  margin-bottom: var(--space-2xl);
+  white-space: nowrap;
+}
+
+.tc {
+  display: inline;
+  transition: opacity 0.06s ease;
+}
+
+.typed-star {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  color: var(--accent);
+  text-shadow:
+    0 0 6px  rgba(201, 168, 76, 0.9),
+    0 0 14px rgba(201, 168, 76, 0.6),
+    0 0 28px rgba(201, 168, 76, 0.3);
+  animation: star-spin 1.2s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes star-spin {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to   { transform: translateY(-50%) rotate(360deg); }
+}

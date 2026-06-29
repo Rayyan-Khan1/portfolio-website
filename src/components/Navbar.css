@@ -40,10 +40,19 @@
   opacity: 0.75;
 }
 
+/* ─── Links wrapper (progress line is relative to this) ──────────────────── */
+.navbar__links-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
 .navbar__links {
   display: flex;
   gap: var(--space-xl);
   align-items: center;
+  padding-bottom: 6px;
 }
 
 .navbar__link {
@@ -51,27 +60,113 @@
   font-weight: 500;
   color: var(--text-muted);
   letter-spacing: 0.01em;
-  transition: color var(--transition);
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: color var(--transition), background var(--transition),
+              box-shadow var(--transition);
   position: relative;
-}
-
-.navbar__link::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--accent);
-  transition: width var(--transition);
+  z-index: 0;
 }
 
 .navbar__link:hover {
   color: var(--text);
 }
 
-.navbar__link:hover::after {
-  width: 100%;
+/* ─── Active link — glowing box with rays ────────────────────────────────── */
+.navbar__link--active {
+  color: var(--accent);
+  background: rgba(201, 168, 76, 0.12);
+  box-shadow:
+    0 0 6px  rgba(201, 168, 76, 0.5),
+    0 0 14px rgba(201, 168, 76, 0.25),
+    0 0 30px rgba(201, 168, 76, 0.12);
+  animation: link-pulse 2.4s ease-in-out infinite;
+}
+
+.navbar__link--active::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent       0deg,
+    transparent      20deg,
+    rgba(201,168,76,0.07) 22deg,
+    rgba(201,168,76,0.07) 26deg,
+    transparent      28deg,
+    transparent      65deg,
+    rgba(201,168,76,0.07) 67deg,
+    rgba(201,168,76,0.07) 71deg,
+    transparent      73deg,
+    transparent     110deg,
+    rgba(201,168,76,0.07) 112deg,
+    rgba(201,168,76,0.07) 116deg,
+    transparent     118deg,
+    transparent     155deg,
+    rgba(201,168,76,0.07) 157deg,
+    rgba(201,168,76,0.07) 161deg,
+    transparent     163deg,
+    transparent     200deg,
+    rgba(201,168,76,0.07) 202deg,
+    rgba(201,168,76,0.07) 206deg,
+    transparent     208deg,
+    transparent     245deg,
+    rgba(201,168,76,0.07) 247deg,
+    rgba(201,168,76,0.07) 251deg,
+    transparent     253deg,
+    transparent     290deg,
+    rgba(201,168,76,0.07) 292deg,
+    rgba(201,168,76,0.07) 296deg,
+    transparent     298deg,
+    transparent     335deg,
+    rgba(201,168,76,0.07) 337deg,
+    rgba(201,168,76,0.07) 341deg,
+    transparent     343deg,
+    transparent     360deg
+  );
+  z-index: -1;
+  animation: rays-spin 20s linear infinite;
+}
+
+@keyframes link-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 6px  rgba(201, 168, 76, 0.5),
+      0 0 14px rgba(201, 168, 76, 0.25),
+      0 0 30px rgba(201, 168, 76, 0.12);
+  }
+  50% {
+    box-shadow:
+      0 0 10px rgba(201, 168, 76, 0.7),
+      0 0 22px rgba(201, 168, 76, 0.4),
+      0 0 44px rgba(201, 168, 76, 0.2);
+  }
+}
+
+@keyframes rays-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+
+/* ─── Progress track (under links only) ─────────────────────────────────── */
+.navbar__progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(201, 168, 76, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.navbar__progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  box-shadow: 0 0 6px rgba(201, 168, 76, 0.6);
 }
 
 /* ─── Hamburger ──────────────────────────────────────────────────────────── */
@@ -107,7 +202,7 @@
     display: flex;
   }
 
-  .navbar__links {
+  .navbar__links-wrap {
     display: none;
     position: fixed;
     top: var(--nav-height);
@@ -116,23 +211,29 @@
     background-color: rgba(14, 14, 14, 0.97);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    flex-direction: column;
-    gap: 0;
-    padding-block: var(--space-md);
     border-bottom: 1px solid var(--border);
   }
 
-  .navbar__links--open {
+  .navbar__links-wrap:has(.navbar__links--open) {
     display: flex;
+    flex-direction: column;
+  }
+
+  .navbar__links {
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 0;
+    align-items: stretch;
   }
 
   .navbar__link {
     display: block;
     padding: var(--space-md) var(--space-xl);
     font-size: 1rem;
+    border-radius: 0;
   }
 
-  .navbar__link::after {
+  .navbar__progress-track {
     display: none;
   }
 }

@@ -1,10 +1,17 @@
 import { meta } from '../data/content';
+import StarField from './StarField';
+import TypedName from './TypedName';
+import TypedTagline from './TypedTagline';
 import './Hero.css';
+
+// Name: starts at 400ms, runs 2000ms → done at ~2400ms
+// Tagline: starts at 2600ms (200ms after name finishes)
+const TAGLINE_DELAY = 1300;
 
 export default function Hero() {
   return (
     <section id="hero" className="hero">
-      <div className="hero__bg-grid" aria-hidden="true" />
+      <StarField />
 
       <div className="container hero__content hero-animate">
         <div className="hero__eyebrow">
@@ -12,13 +19,9 @@ export default function Hero() {
           <span className="hero__mono">Available for opportunities</span>
         </div>
 
-        <h1 className="hero__name">
-          {meta.name.split(' ').map((word, i) => (
-            <span key={i} className="hero__name-word">{word}</span>
-          ))}
-        </h1>
+        <TypedName name={meta.name} />
 
-        <p className="hero__tagline">{meta.tagline}</p>
+        <TypedTagline text={meta.tagline} delay={TAGLINE_DELAY} />
 
         <div className="hero__actions">
           <a href="#projects" className="btn btn--primary">View Projects</a>
