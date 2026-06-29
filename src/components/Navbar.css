@@ -40,9 +40,7 @@
   opacity: 0.75;
 }
 
-/* ─── Links wrapper (progress line is relative to this) ──────────────────── */
 .navbar__links-wrap {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -150,7 +148,7 @@
 }
 
 
-/* ─── Progress track (under links only) ─────────────────────────────────── */
+/* ─── Progress track — anchored to bottom of the fixed navbar ────────────── */
 .navbar__progress-track {
   position: absolute;
   bottom: 0;
@@ -158,7 +156,6 @@
   right: 0;
   height: 2px;
   background: rgba(201, 168, 76, 0.12);
-  border-radius: 2px;
   overflow: hidden;
 }
 
@@ -233,8 +230,9 @@
     border-radius: 0;
   }
 
-  .navbar__progress-track {
-    display: none;
+  .navbar__link--active {
+    border-radius: 6px;
+    margin-inline: var(--space-md);
   }
 }
 

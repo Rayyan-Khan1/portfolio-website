@@ -42,15 +42,6 @@ export default function Navbar() {
               );
             })}
           </ul>
-
-          {/* Progress line runs only under the links */}
-          <div className="navbar__progress-track">
-            <div
-              className="navbar__progress-fill"
-              ref={progressRef}
-              aria-hidden="true"
-            />
-          </div>
         </div>
 
         <button
@@ -63,6 +54,14 @@ export default function Navbar() {
           <span />
           <span />
         </button>
+      </div>
+      {/* Progress line anchored to bottom of the navbar — always visible */}
+      <div className="navbar__progress-track">
+        <div
+          className="navbar__progress-fill"
+          ref={progressRef}
+          aria-hidden="true"
+        />
       </div>
     </nav>
   );

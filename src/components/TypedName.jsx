@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, Fragment } from 'react';
 import './TypedName.css';
 
 export default function TypedName({ name }) {
@@ -30,7 +30,6 @@ export default function TypedName({ name }) {
         const pRect = container.getBoundingClientRect();
         star.style.left    = `${cRect.left - pRect.left + cRect.width / 2}px`;
         star.style.top     = `${cRect.top  - pRect.top  + cRect.height / 2}px`;
-        // Fade in quickly at start, fade out at end
         const fadeIn  = Math.min(1, progress / 0.05);
         const fadeOut = progress > 0.95 ? 1 - (progress - 0.95) / 0.05 : 1;
         star.style.opacity = `${fadeIn * fadeOut}`;
@@ -61,21 +60,40 @@ export default function TypedName({ name }) {
     };
   }, [name]);
 
+  // Wrap each word in its own inline-block so the browser can only break between
+  // whole words, not mid-word (e.g. "Rayy-" / "an" on narrow screens).
+  const words = name.split(' ');
+  let charIdx = 0;
+  const nameChars = words.map((word, wi) => {
+    const letters = word.split('').map((char) => {
+      const i = charIdx++;
+      return (
+        <span key={i} className="tn-char" style={{ opacity: 0, color: i < firstSpace ? 'var(--text)' : 'var(--accent)' }}>
+          {char}
+        </span>
+      );
+    });
+    let space = null;
+    if (wi < words.length - 1) {
+      const i = charIdx++;
+      space = (
+        <span key={`sp-${wi}`} className="tn-char" style={{ opacity: 0, color: i < firstSpace ? 'var(--text)' : 'var(--accent)' }}>
+          {' '}
+        </span>
+      );
+    }
+    return (
+      <Fragment key={wi}>
+        <span className="tn-word">{letters}</span>
+        {space}
+      </Fragment>
+    );
+  });
+
   return (
     <h1 className="typed-name" ref={containerRef}>
       <span className="typed-name__star" ref={starRef} aria-hidden="true" style={{ opacity: 0 }} />
-      {name.split('').map((char, i) => (
-        <span
-          key={i}
-          className="tn-char"
-          style={{
-            opacity: 0,
-            color: i < firstSpace ? 'var(--text)' : 'var(--accent)',
-          }}
-        >
-          {char === ' ' ? ' ' : char}
-        </span>
-      ))}
+      {nameChars}
     </h1>
   );
 }
