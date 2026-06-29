@@ -12,6 +12,11 @@
   white-space: nowrap;
 }
 
+.tn-word-gap {
+  display: inline-block;
+  width: 0.28em;
+}
+
 .tn-char {
   display: inline-block;
   transition: opacity 0.25s ease, transform 0.25s ease;

@@ -13,7 +13,6 @@ export default function TypedName({ name }) {
 
     const chars    = Array.from(container.querySelectorAll('.tn-char'));
     const DURATION = 1100;
-    const DELAY    = 0;
 
     let startTime = null;
     let rafId;
@@ -23,7 +22,6 @@ export default function TypedName({ name }) {
       const progress    = Math.min(1, (ts - startTime) / DURATION);
       const revealCount = Math.floor(progress * chars.length);
 
-      // Position star at current character's location
       const currentChar = chars[Math.min(revealCount, chars.length - 1)];
       if (currentChar) {
         const cRect = currentChar.getBoundingClientRect();
@@ -50,42 +48,32 @@ export default function TypedName({ name }) {
       }
     };
 
-    const timeout = setTimeout(() => {
-      rafId = requestAnimationFrame(animate);
-    }, DELAY);
-
-    return () => {
-      clearTimeout(timeout);
-      cancelAnimationFrame(rafId);
-    };
+    rafId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafId);
   }, [name]);
 
-  // Wrap each word in its own inline-block so the browser can only break between
-  // whole words, not mid-word (e.g. "Rayy-" / "an" on narrow screens).
+  // Each word wrapped in white-space:nowrap so the browser only breaks between
+  // whole words. Spaces use a fixed-width gap span — a space char inside
+  // inline-block collapses to 0 in many browsers.
   const words = name.split(' ');
   let charIdx = 0;
   const nameChars = words.map((word, wi) => {
     const letters = word.split('').map((char) => {
       const i = charIdx++;
       return (
-        <span key={i} className="tn-char" style={{ opacity: 0, color: i < firstSpace ? 'var(--text)' : 'var(--accent)' }}>
+        <span
+          key={i}
+          className="tn-char"
+          style={{ opacity: 0, color: i < firstSpace ? 'var(--text)' : 'var(--accent)' }}
+        >
           {char}
         </span>
       );
     });
-    let space = null;
-    if (wi < words.length - 1) {
-      const i = charIdx++;
-      space = (
-        <span key={`sp-${wi}`} className="tn-char" style={{ opacity: 0, color: i < firstSpace ? 'var(--text)' : 'var(--accent)' }}>
-          {' '}
-        </span>
-      );
-    }
     return (
       <Fragment key={wi}>
         <span className="tn-word">{letters}</span>
-        {space}
+        {wi < words.length - 1 && <span className="tn-word-gap" aria-hidden="true" />}
       </Fragment>
     );
   });
