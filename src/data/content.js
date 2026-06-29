@@ -6,50 +6,40 @@
 export const meta = {
   name: 'Muhammad Rayyan Khan',
   initials: 'RK',
-  tagline: 'CIS student. Builder. Problem solver.',
-  email: 'your@email.com',
-  linkedin: 'https://linkedin.com/in/yourhandle',
-  github: 'https://github.com/yourusername',
-  resumeUrl: '/resume.pdf',
+  tagline: 'AI. Data. Software Development.',
+  email: 'rayyankhan1910@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/rayyan-khan1/',
+  github: 'https://github.com/Rayyan-Khan1',
+  resumeUrl: `${import.meta.env.BASE_URL}resume.pdf`,
 };
 
 export const about = {
-  bio: `Placeholder — describe yourself here in 2–3 sentences.
-  What are you studying, what do you care about, what drives you.`,
+  bio: `A passionate and curious Junior CIS student at Georgia State University with a strong interest in AI, data, and software development. I like to build things and learn as I go.`,
   traits: [
-    { label: 'Trait 1', description: 'Placeholder description for this distinguishing quality.' },
-    { label: 'Trait 2', description: 'Placeholder description for this distinguishing quality.' },
-    { label: 'Trait 3', description: 'Placeholder description for this distinguishing quality.' },
-    { label: 'Trait 4', description: 'Placeholder description for this distinguishing quality.' },
+    { label: 'Deliberate Thinker', description: 'Critically evaluates ideas before building. Asks the right questions first.' },
+    { label: 'Initiative-Driven', description: 'Approaches even simple tasks with the mindset to do them exceptionally.' },
+    { label: 'Detail-Oriented', description: 'Pays close attention to the small things that collectively make the difference.' },
+    { label: 'Continuous Improver', description: 'Always looking for ways to refine and push the current build further.' },
   ],
 };
 
 export const projects = [
   {
     id: 1,
-    title: 'Project One',
-    description: 'One-line description of what the project does and why it matters.',
-    image: null, // replace with: '/images/project-one.png'
-    tags: ['Python', 'SQL', 'Placeholder'],
-    github: 'https://github.com/yourusername/project-one',
+    title: 'ClearPath',
+    description: 'An AI-powered academic planner that imports syllabi and auto-schedules a full semester\'s tasks. AI-engineered with Cursor.',
+    image: 'images/clearpath.png',
+    tags: ['React', 'TypeScript', 'Gemini API', 'Tailwind'],
+    github: 'https://github.com/Rayyan-Khan1/clearpath',
     live: null,
   },
   {
     id: 2,
-    title: 'Project Two',
-    description: 'One-line description of what the project does and why it matters.',
-    image: null, // replace with: '/images/project-two.png'
-    tags: ['React', 'Node.js', 'Placeholder'],
-    github: 'https://github.com/yourusername/project-two',
-    live: null,
-  },
-  {
-    id: 3,
-    title: 'Project Three',
-    description: 'One-line description of what the project does and why it matters.',
-    image: null, // replace with: '/images/project-three.png'
-    tags: ['Machine Learning', 'Placeholder'],
-    github: 'https://github.com/yourusername/project-three',
+    title: 'AI Job Source Agent',
+    description: 'A CLI agent that takes a LinkedIn job URL, scrapes the company\'s careers page, and surfaces open positions using Gemini. Built with Claude Code.',
+    image: 'images/ai-job-agent.png',
+    tags: ['Python', 'Playwright', 'Gemini API', 'CLI'],
+    github: 'https://github.com/Rayyan-Khan1/ai-job-source-agent',
     live: null,
   },
 ];
@@ -57,10 +47,10 @@ export const projects = [
 export const skills = [
   {
     category: 'Languages',
-    items: ['Python', 'JavaScript', 'SQL', 'Placeholder'],
+    items: ['Python', 'JavaScript', 'TypeScript', 'SQL'],
   },
   {
     category: 'Tools & Platforms',
-    items: ['Git', 'GitHub', 'VS Code', 'Placeholder'],
+    items: ['Tableau', 'Git', 'GitHub', 'Cursor', 'Claude Code', 'VS Code'],
   },
 ];

@@ -25,11 +25,11 @@ export default function Contact() {
           </a>
           <a href={meta.linkedin} target="_blank" rel="noreferrer" className="contact__link fade-in-child">
             <span className="contact__link-label">LinkedIn</span>
-            <span className="contact__link-value">linkedin.com/in/yourhandle</span>
+            <span className="contact__link-value">linkedin.com/in/rayyan-khan1</span>
           </a>
           <a href={meta.github} target="_blank" rel="noreferrer" className="contact__link fade-in-child">
             <span className="contact__link-label">GitHub</span>
-            <span className="contact__link-value">github.com/yourusername</span>
+            <span className="contact__link-value">github.com/Rayyan-Khan1</span>
           </a>
         </div>
       </div>

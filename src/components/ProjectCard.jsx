@@ -1,5 +1,7 @@
 import './ProjectCard.css';
 
+const BASE = import.meta.env.BASE_URL;
+
 export default function ProjectCard({ project }) {
   const { title, description, image, tags, github, live } = project;
 
@@ -7,7 +9,7 @@ export default function ProjectCard({ project }) {
     <article className="project-card">
       <div className="project-card__image">
         {image
-          ? <img src={image} alt={`${title} preview`} />
+          ? <img src={BASE + image} alt={`${title} preview`} />
           : (
             <div className="project-card__placeholder" aria-hidden="true">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">

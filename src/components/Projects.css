@@ -6,6 +6,15 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-lg);
+  align-items: stretch;
+}
+
+.projects__grid > * {
+  height: 100%;
+}
+
+.projects__grid .project-card {
+  height: 100%;
 }
 
 @media (max-width: 768px) {
