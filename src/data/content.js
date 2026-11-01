@@ -30,8 +30,8 @@ export const projects = [
     description: 'An AI-powered academic planner that imports syllabi and auto-schedules a full semester\'s tasks. AI-engineered with Cursor.',
     image: 'images/clearpath.png',
     tags: ['React', 'TypeScript', 'Gemini API', 'Tailwind'],
-    github: 'https://github.com/Rayyan-Khan1/clearpath',
-    live: null,
+    github: null,
+    live: 'https://clearpath-cf7a9.firebaseapp.com/',
   },
   {
     id: 2,
